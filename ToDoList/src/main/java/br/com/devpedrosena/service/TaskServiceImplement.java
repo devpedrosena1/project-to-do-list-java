@@ -5,6 +5,8 @@ import br.com.devpedrosena.domainmodel.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +16,15 @@ public class TaskServiceImplement implements TaskService{
     private final TaskRepository repository;
 
     @Override
-    public Task findAll(Task task) {
-        return null;
+    public List<Task> findAll(Task task) {
+        return new ArrayList<>(
+                this.repository.findAll()
+        );
     }
 
     @Override
     public Optional<Task> findById(Long id) {
-        return Optional.empty();
+        return this.repository.findById(id);
     }
 
     @Override
@@ -30,7 +34,7 @@ public class TaskServiceImplement implements TaskService{
 
     @Override
     public boolean existsById(Long id) {
-        return false;
+        return this.repository.existsById(id);
     }
 
     @Override
@@ -41,5 +45,13 @@ public class TaskServiceImplement implements TaskService{
     @Override
     public void delete(Task task) {
         this.repository.delete(task);
+    }
+
+    @Override
+    public Task update(Long id, Task task) {
+        Task taskFromDatabase = this.repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Task not found!"));
+
+        return this.repository.save(task);
     }
 }
