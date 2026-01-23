@@ -11,6 +11,8 @@ import br.com.devpedrosena.domainmodel.Task;
 @Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -23,17 +25,18 @@ public class TaskDTO {
     private String description;
 
     @NotNull(message = "This field is required.")
-    private boolean completed;
+    private Boolean completed;
 
     @NotNull(message = "This field is required.")
-    private int priority;
+    private Integer priority;
 
     public static TaskDTO fromEntity(Task task) {
         if (task == null) return null;
         return TaskDTO.builder()
                 .id(task.getId())
-                .description(task.getDescription())
                 .name(task.getName())
+                .description(task.getDescription())
+                .completed(task.getCompleted())
                 .priority(task.getPriority())
                 .build();
     }
@@ -44,6 +47,7 @@ public class TaskDTO {
                 .id(dto.getId())
                 .name(dto.getName())
                 .description(dto.getDescription())
+                .completed(dto.getCompleted())
                 .priority(dto.getPriority())
                 .build();
     }

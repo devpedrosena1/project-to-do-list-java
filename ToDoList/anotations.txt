@@ -1,0 +1,9 @@
+{
+    "name": "Estudar",
+    "description": "Estudar Java",
+    "completed": false,
+    "priority": 3
+}
+
+http://localhost:8080/api/v1/task
+http://localhost:8080/h2-console

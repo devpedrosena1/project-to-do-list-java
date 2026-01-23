@@ -16,7 +16,7 @@ public class TaskServiceImplement implements TaskService{
     private final TaskRepository repository;
 
     @Override
-    public List<Task> findAll(Task task) {
+    public List<Task> findAll() {
         return new ArrayList<>(
                 this.repository.findAll()
         );

@@ -24,10 +24,10 @@ public class Task {
     private @Getter @Setter String description;
 
     @Column(name = "COMPLETED")
-    private @Getter @Setter boolean completed;
+    private @Getter @Setter Boolean completed;
 
     @Column(name = "PRIORITY")
-    private @Getter @Setter int priority;
+    private @Getter @Setter Integer priority;
 
     @Override
     public boolean equals(Object o) {
